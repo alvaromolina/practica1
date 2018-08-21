@@ -11,5 +11,6 @@ public class Main {
         blog.anadirArticulo(articulo1);
         blog.anadirArticulo(new Articulo("Otro texto"));
         blog.borrarArticulo(1);
+        System.out.println(blog.numeroArticulos());
     }
 }
