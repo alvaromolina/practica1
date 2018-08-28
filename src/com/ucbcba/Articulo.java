@@ -1,5 +1,6 @@
 package com.ucbcba;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Articulo {
@@ -20,8 +21,27 @@ public class Articulo {
         return this.comentarios.size();
     }
 
+    public boolean isPalabra(String palabra){
+        /*
+        String caracteres  = "abcdefghijklmnopqrs";
+        for(int i=0; i < palabra.length(); i++){
+            if(caracteres.contains(String.valueOf(palabra.charAt(i)))){
+                return true;
+            }
+        }
+        return false;*/
+        return palabra.matches("(a-zA-Z)");
+    }
+
     public int numeroPalabras(){
-        return 0; //TODO
+        String[] arreglo = this.texto.split(" ");
+        int contador = 0;
+        for(String palabra : arreglo){
+            if(isPalabra(palabra)){
+                contador++;
+            }
+        }
+        return contador;
     }
 
     public void like(){
@@ -52,8 +72,15 @@ public class Articulo {
         this.comentarios = comentarios;
     }
 
-    public void anadirComentario(Comentario comentario){
+    public void anadirComentario(Comentario comentario) throws ComentarioVacioException, ComentarioLengthException {
+        if(comentario.getTexto().equals("")){
+            throw  new ComentarioVacioException();
+        }
+        if(comentario.getTexto().length() <= 5){
+            throw  new ComentarioLengthException(comentario.getTexto().length());
+        }
         this.comentarios.add(comentario);
+
     }
 
     public void borrarComentario(Integer id){

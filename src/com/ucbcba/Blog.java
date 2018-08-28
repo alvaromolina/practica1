@@ -1,5 +1,6 @@
 package com.ucbcba;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Blog extends SitioWeb {
@@ -8,6 +9,7 @@ public class Blog extends SitioWeb {
 
     public Blog(String url, String nombre) {
         super(url, nombre);
+        articulos = new ArrayList<>();
     }
 
     public List<Articulo> getArticulos() {
@@ -40,7 +42,7 @@ public class Blog extends SitioWeb {
         this.articulos.add(articulo);
     }
 
-    public void borrarArticulo(Integer id){
+    public void borrarArticulo(int id){
         this.articulos.remove(id);
     }
 }
